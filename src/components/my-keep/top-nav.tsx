@@ -1,6 +1,8 @@
 import React from "react";
 import MainLogo from "../../../public/my-keep/main-logo-48.svg";
 import Image from "next/image";
+import Sun from "../../../public/my-keep/sun-new.svg";
+import Moon from "../../../public/my-keep/moon-solid.svg";
 
 const TopNav = () => {
   return (
@@ -16,10 +18,13 @@ const TopNav = () => {
         <div className="text-[#ffffff] text-22">Keep</div>
       </div>
       <div className="col-span-8"></div>
-      <div className="col-span-2 flex space-x-10">
-        <div className="bg-[#525355]">{/* <Image /> */}</div>
+      <div className="col-span-2 flex space-x-10 items-center justify-end">
+        {/* <div className="bg-[#525355]"><Image /></div> */}
         <div>
-          <Image src={"/my-keep/day-and-night.png"} width={48} height={48} />
+          {/* <Image src={"/my-keep/sunny.png"} width={48} height={48} />
+           */}
+          <Sun className="w-48 min-w-48 h-48" />
+          {/* <Moon className="w-48 h-48 min-w-48 text-[#FFC10A]" /> */}
         </div>
       </div>
     </div>
