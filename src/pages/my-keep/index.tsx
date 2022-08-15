@@ -16,53 +16,23 @@ export const KeepDispatchContext = createContext<any>(null);
 
 const initialState: any = {
   //inital product list
-  products: [
+  allNotes: [
     {
-      name: "Potato",
-      id: 1,
-      price: 30,
-      available: 1,
-      vendor: "Himachal Pvt Ltd",
-      category: "Vegetables",
-      count: 0,
-      imgUrl: "/potato.jpeg",
+      title: "asdsd",
+      content: "asdsadsadsdsdsda",
+      labels: ["App", "Museum"],
     },
     {
-      name: "Banana",
-      id: 2,
-      price: 50,
-      available: 1,
-      category: "Fruits",
-      vendor: "Organic farms",
-      count: 0,
-      imgUrl: "/banana.jpeg",
-    },
-    {
-      name: "Drumsticks",
-      id: 3,
-      price: 20,
-      available: 0,
-      category: "Vegetables",
-      vendor: "Mallikarjuna farms",
-      count: 0,
-      imgUrl: "/drumstick.jpeg",
-    },
-    {
-      name: "Orange",
-      id: 4,
-      price: 25,
-      available: 1,
-      vendor: "Nagpur farms",
-      category: "Fruits",
-      count: 0,
-      imgUrl: "/orange.jpeg",
+      title: "appleeeee",
+      content: "lrem500alrem500alrem500alrem500alrem500alrem500a",
+      labels: ["Fruits", "New", "Museum"],
     },
   ],
 
   //to select category
   selectedCategory: "All Products",
   //
-  currentLabel: "Notes",
+  selectedLabel: "Notes",
 };
 
 const keepStateReducer = (state: any, action: any) => {
@@ -80,11 +50,16 @@ const keepStateReducer = (state: any, action: any) => {
         products: action.products,
         // canSaveChanges: true,
       };
-    case "change-category":
+    case "select-label":
       return {
         ...state,
-        selectedCategory: action.selectedCategory,
+        selectedLabel: action.selectedLabel,
         // canSaveChanges: true,
+      };
+    case "add-note":
+      return {
+        ...state,
+        allNotes: [...state.allNotes, action.newNote],
       };
     default:
       return state;
@@ -105,7 +80,7 @@ export function KeepStateProvider({ children }: { children: any }) {
   );
 }
 
-export function useProductState(): any {
+export function useKeepState(): any {
   const context = useContext(KeepStateContext);
   if (context === undefined) {
     throw new Error(
@@ -115,7 +90,7 @@ export function useProductState(): any {
   return context;
 }
 
-export function useProductDispatch(): any {
+export function useKeepDispatch(): any {
   const context = useContext(KeepDispatchContext);
   if (context === undefined) {
     throw new Error(

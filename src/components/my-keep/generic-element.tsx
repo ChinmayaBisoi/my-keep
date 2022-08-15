@@ -7,25 +7,11 @@ const GenericElement = ({
   leftIcon?: JSX.Element;
   rightIcon?: JSX.Element;
 }) => {
-  const [isHovering, setIsHovering] = useState(false);
   const [input, setInput] = useState("");
   const inputRef: any = useRef(null);
-  useEffect(() => {
-    if (!!inputRef.current) {
-      inputRef?.current?.focus();
-    }
-  }, []);
 
   return (
-    <div
-      onMouseOver={() => {
-        setIsHovering(true);
-      }}
-      onMouseOut={() => {
-        setIsHovering(false);
-      }}
-      className="flex justify-between items-center"
-    >
+    <div className="flex justify-between items-center">
       <div onClick={() => {}}>{!!leftIcon && leftIcon}</div>
       <div className="px-11 w-full">
         <input

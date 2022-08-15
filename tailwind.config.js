@@ -75,6 +75,7 @@ module.exports = {
       23: "0px 0px 4px rgba(0, 0, 0, 0.25)",
       24: "0px 8px 16px rgba(240, 242, 255, 0.08)",
       25: "0px 6px 30px 2px rgba(0, 0, 0, 0.08)",
+      26: "0px 0px 6px rgba(0,0,0,0.24)"
     },
     dropShadow: {
       none: none,

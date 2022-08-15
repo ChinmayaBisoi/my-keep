@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.animate-BG {
+  animation: animateBottomSheetBG 0.2s linear;
+}
+
+@keyframes animateBottomSheetBG {
+  0% {
+    opacity: 0%;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}

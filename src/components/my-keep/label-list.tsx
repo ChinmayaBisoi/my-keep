@@ -6,12 +6,23 @@ import Cross from "../../../public/my-keep/close.svg";
 import Popup from "../common/popup";
 import GenericElement from "./generic-element";
 import Tick from "../../../public/my-keep/check-solid.svg";
+import { useKeepState } from "../../pages/my-keep";
 
 const LabelList = () => {
   const [showPopup, setShowPopup] = useState(false);
+  const { allNotes } = useKeepState();
+  const allLabels = allNotes.reduce((acc: any, curr: any) => {
+    for (let i = 0; i < curr.labels.length; i++) {
+      if (!acc[curr.labels[i]]) {
+        acc[curr.labels[i]] = 1;
+      }
+    }
+    return acc;
+  }, {});
+  console.log(allLabels);
   return (
     <div className="col-span-3 flex flex-col pt-8">
-      <div
+      {/* <div
         onClick={() => {
           setShowPopup(true);
         }}
@@ -19,19 +30,20 @@ const LabelList = () => {
       >
         <Cross className="transform rotate-45 w-20 min-w-20 h-20 text-[#F1F1F1]" />
         <div className="text-20 text-[#f1f1f1]">Create New</div>
-      </div>
+      </div> */}
       <Label
         title={"Notes"}
         icon={<Bulb className="w-24 min-w-24 h-24 text-[#F1F1F1]" />}
       />
-      <Label
-        title={"Notes"}
-        icon={<Bulb className="w-24 min-w-24 h-24 text-[#F1F1F1]" />}
-      />
-      <Label
-        title={"Notes"}
-        icon={<Bulb className="w-24 min-w-24 h-24 text-[#F1F1F1]" />}
-      />
+      {Object.keys(allLabels).map((item) => {
+        return (
+          <Label
+            key={item}
+            title={item}
+            icon={<Bulb className="w-24 min-w-24 h-24 text-[#F1F1F1]" />}
+          />
+        );
+      })}
       {!!showPopup && (
         <Popup
           close={() => {
@@ -55,12 +67,12 @@ const LabelList = () => {
                 }
               />
             </div>
-            <div className="flex justify-end px-15">
+            <div className="flex justify-end">
               <div
                 onClick={() => {
                   setShowPopup(false);
                 }}
-                className="py-12 text-16 text-[#F1F1F1] font-600"
+                className="py-10 my-2 px-15 text-16 text-[#F1F1F1] font-600 cursor-pointer"
               >
                 Done
               </div>
