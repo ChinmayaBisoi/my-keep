@@ -21,7 +21,7 @@ const LabelList = () => {
   }, {});
   console.log(allLabels);
   return (
-    <div className="col-span-3 flex flex-col pt-8">
+    <div className="md:col-span-3 col-span-2 flex flex-col pt-8">
       {/* <div
         onClick={() => {
           setShowPopup(true);

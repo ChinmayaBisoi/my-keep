@@ -6,7 +6,7 @@ import PinFull from "../../../public/my-keep/pin-38.svg";
 import Cross from "../../../public/my-keep/close.svg";
 
 const AddNote = () => {
-  const { selectedLabel } = useKeepState();
+  const { selectedLabel, allNotes } = useKeepState();
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -34,12 +34,13 @@ const AddNote = () => {
   };
 
   const addNewNote = () => {
-    let newNote = { title: "", content: "", labels: [], isPinned: false };
+    let newNote: any = {};
     if (title !== "" || content !== "") {
-      newNote.title = title;
-      newNote.content = content;
-      newNote.labels = labels;
-      newNote.isPinned = isPinned;
+      newNote["title"] = title;
+      newNote["content"] = content;
+      newNote["labels"] = labels;
+      newNote["isPinned"] = isPinned;
+      newNote["createdAt"] = new Date();
       dispatch({ type: "add-note", newNote });
       clear();
       setNoteAddedNotif(true);
@@ -89,7 +90,7 @@ const AddNote = () => {
 
   return (
     <div className="grid grid-cols-12">
-      <div className="col-span-8 col-start-3">
+      <div className="md:col-span-8 md:col-start-3 col-span-full">
         <div className="flex flex-col rounded-8 border border-[#525355] shadow-26 shadow-[#000]">
           <div className="px-15 py-10 flex items-center">
             <input

@@ -21,11 +21,15 @@ const initialState: any = {
       title: "asdsd",
       content: "asdsadsadsdsdsda",
       labels: ["App", "Museum"],
+      createdAt: "Tue Aug 16 2022 02:39:41 GMT+0530 (India Standard Time)",
+      isPinned: false,
     },
     {
       title: "appleeeee",
-      content: "lrem500alrem500alrem500alrem500alrem500alrem500a",
+      content: "lrem500 alrem500alre m500alrem50 0alrem500al rem500a",
       labels: ["Fruits", "New", "Museum"],
+      createdAt: "Tue Aug 16 2022 02:42:41 GMT+0530 (India Standard Time)",
+      isPinned: false,
     },
   ],
 
@@ -59,7 +63,24 @@ const keepStateReducer = (state: any, action: any) => {
     case "add-note":
       return {
         ...state,
-        allNotes: [...state.allNotes, action.newNote],
+        allNotes: [action.newNote, ...state.allNotes],
+      };
+    case "delete-note":
+      return {
+        ...state,
+        allNotes: state.allNotes.filter((note: any) => {
+          return note.createdAt !== action.createdAt;
+        }),
+      };
+    case "add-or-remove-pin-from-existing-note":
+      return {
+        ...state,
+        allNotes: state.allNotes.map((note: any) => {
+          if (note.createdAt === action.createdAt) {
+            note.isPinned = !action.isPinned;
+          }
+          return note;
+        }),
       };
     default:
       return state;
@@ -103,7 +124,7 @@ export function useKeepDispatch(): any {
 const MyKeep = () => {
   return (
     <KeepStateProvider>
-      <div className="min-h-screen bg-[#202124]">
+      <div className="relative min-h-screen bg-[#202124]">
         <TopNav />
         <MainContent />
       </div>

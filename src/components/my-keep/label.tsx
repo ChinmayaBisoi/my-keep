@@ -14,7 +14,7 @@ const Label = ({ title, icon }: { title: string; icon: JSX.Element }) => {
       }`}
     >
       {!!icon && icon}
-      <div className="text-14 text-[#f1f1f1]">{title}</div>
+      <div className="text-14 text-[#f1f1f1] md:block hidden">{title}</div>
     </div>
   );
 };
